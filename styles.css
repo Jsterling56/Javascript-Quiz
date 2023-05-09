@@ -1,3 +1,9 @@
+head, header, body{
+    background-color: rgb(188, 238, 255);
+}
+
+
+
 #header{
     background-color: rgb(0, 124, 191);
     margin: 20px;
@@ -6,6 +12,7 @@
     border-radius: 20px;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
+    color: white;
 }
 
 #timer{
@@ -19,6 +26,7 @@
     font-weight: bold;
     display:flex;
     flex-direction: row-reverse;
+    color: white;
 }
 
 #questions{
@@ -38,6 +46,7 @@
     width: 100px;
     margin: 50px;
     padding: 50px;
+    color: white;
 }
 
 

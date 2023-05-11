@@ -1,8 +1,8 @@
-// Create variable references to initial HTML locations
+
 var headerEl = document.getElementById("top");
 var contentId = document.getElementById("content");
 
-// This function will handle the basic creation of an element, one attribute, and text content
+
 function createElement(element, type, value, text) {
     var tmp = document.createElement(element);
     tmp.setAttribute(type, value);
@@ -10,7 +10,7 @@ function createElement(element, type, value, text) {
     return tmp;
 };
 
-//This function will create buttons for answer later
+
 function createButton(idValue) {
     var tmp = document.createElement("button");
     tmp.setAttribute("type", "button");
@@ -18,7 +18,7 @@ function createButton(idValue) {
     tmp.setAttribute("id", idValue);
     return tmp;
 };
-// This will create the span containing button text
+
 function createSpan(idValue) {
     var tmp = document.createElement("span");
     tmp.setAttribute("data-answer", "option" + idValue);
@@ -26,17 +26,15 @@ function createSpan(idValue) {
     return tmp;
 };
 
-// This function will be used to append the Child elements
+
 function appendChild(location, element) {
     var tmp = location.appendChild(element);
     return tmp;
 };
 
-// This is a click event that will start the quiz
+
 function startQuiz(event) {
     event.preventDefault;
-    // Data for quiz starts here
-    // Questions that get pushed into questionList array
     questionList = [];
 
     var question0 = {
@@ -48,49 +46,49 @@ function startQuiz(event) {
 
     var question1 = {
         text: "Commonly used data types do NOT include:",
-        choices: ["1 - Booleans", "2 - Alerts", "3 - Strings", "4 - Numbers"],
+        choices: ["1 ) Booleans", "2 ) Alerts", "3 ) Strings", "4 ) Numbers"],
         correctAnswer: "option1",
     };
     questionList.push(question1);
 
     var question2 = {
         text: "The condition of an if/else statement is enclosed within ______.",
-        choices: ["1 - Quotes", "2 - Curly Brackets", "3 - Parentheses", "4 - Square Brackets"],
+        choices: ["1 ) Quotes", "2 ) Curly Brackets", "3 ) Parentheses", "4 ) Square Brackets"],
         correctAnswer: "option2",
     };
     questionList.push(question2);
 
     var question3 = {
         text: "Arrays in Javascript can be used to store ______.",
-        choices: ["1 - Numbers and strings", "2 - Other Arrays", "3 - Booleans", "4 - All of the above",],
+        choices: ["1 ) Numbers and strings", "2 ) Other Arrays", "3 ) Booleans", "4 ) All of the above",],
         correctAnswer: "option3",
     };
     questionList.push(question3);
 
     var question4 = {
         text: "String values must be enclosed within ______ when being assigned to variables.",
-        choices: ["1 - Quotes", "2 - Curly Brackets", "3 - Commas", "4 - Parentheses"],
+        choices: ["1 ) Quotes", "2 ) Curly Brackets", "3 ) Commas", "4 ) Parentheses"],
         correctAnswer: "option0",
     };
     questionList.push(question4);
 
     var question5 = {
         text: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        choices: ["1 - Javascript", "2 - console.log", "3 - Terminal/bash", "4 - For loops"],
+        choices: ["1 ) Javascript", "2 ) console.log", "3 ) Terminal/bash", "4 ) For loops"],
         correctAnswer: "option1",
     };
     questionList.push(question5);
 
     var question6 = {
         text: "Which built-in method removes the last element from an array and returns that element?",
-        choices: ["1 - last()", "2 - get()", "3 - pop()", "4 - None of the above"],
+        choices: ["1 ) last()", "2 ) get()", "3 ) pop()", "4 ) None of the above"],
         correctAnswer: "option2"
     };
     questionList.push(question6);
 
     var question7 = {
         text: "Inside which HTML element do we put the JavaScript?",
-        choices: ["1 - <javascript>", "2 - <scripting>", "3 - <script>", "4 - <js>"],
+        choices: ["1 ) <javascript>", "2 ) <scripting>", "3 ) <script>", "4 ) <js>"],
         correctAnswer: "option2"
 
     };
@@ -98,50 +96,49 @@ function startQuiz(event) {
 
     var question8 = {
         text: "How do you write \"Hello World\" in an alert box?",
-        choices: ["1 - msg(\"Hello World\");", "2 - alertBox(\"Hello World\");", "3 - alert(\"Hello World\");", " 4 - msgBox(\"Hello World\");"],
+        choices: ["1 ) msg(\"Hello World\");", "2 ) alertBox(\"Hello World\");", "3 ) alert(\"Hello World\");", " 4 ) msgBox(\"Hello World\");"],
         correctAnswer: "option2"
     };
     questionList.push(question8);
 
     var question9 = {
         text: "How to write an IF statement in Javascript?",
-        choices: ["1 - if i = 5 then", "2 - if i = 5", "3 - if i == 5 then", "4 - if (i==5)"],
+        choices: ["1 ) if i = 5 then", "2 ) if i = 5", "3 ) if i == 5 then", "4 ) if (i==5)"],
         correctAnswer: "option3"
     };
     questionList.push(question9);
 
-    // Shuffling the questions in different order
+    
     shuffle(questionList);
 
-    // Quiz variables
+    
     var lastQuestionIndex = questionList.length - 1;
     var score = 0;
     var currentQuestionIndex = 0;
     countDown = 75;
     countDownSpan.textContent = countDown;
 
-    // Hiding description and quiz button
+    
     document.querySelector("#description").style.display = "none";
     document.querySelector("#start-quiz").style.display = "none";
     contentId.style.textAlign = "left";
 
-    // Running time set
+    
     setTime();
 
-    //Creating Answer buttons
+    
     createAnswers();
 
-    //Rendering first question, increased by currentIndexQuestion for next question
+    
     renderQuestion();
 
-    //This will target the answer buttons for user input and checking answer
+    
     var answerList = document.querySelectorAll(".answers");
     for (var i = 0; i < answerList.length; i++) {
         answerList[i].addEventListener('click', checkAnswer)
     };
 
-    // This function starts the timer counting down to 0 when the quiz starts
-    // When it hits 0, the timer shows gameOver()
+    
     function setTime() {
         var timerInterval = setInterval(function () {
             countDown--;
@@ -160,7 +157,7 @@ function startQuiz(event) {
         }, 1000);
     };
 
-    // Function for creating the answer buttons
+    
     function createAnswers() {
         var q = questionList[currentQuestionIndex];
         var answers = createElement("div", "id", "answers");
@@ -176,7 +173,7 @@ function startQuiz(event) {
         };
     };
 
-    // This function will shuffle order of questions in the array
+    
     function shuffle(array) {
         var currentIndex = array.length;
         var temporaryValue, randomIndex;
@@ -190,7 +187,7 @@ function startQuiz(event) {
         return array;
     };
 
-    // This function will populate the questions and answers
+    
     function renderQuestion() {
         var q = questionList[currentQuestionIndex];
 
@@ -201,8 +198,7 @@ function startQuiz(event) {
         }
     };
 
-    // This function will check the correct answer against the user choice
-    // It will also load the next question, or if it is the last question, will show gameOver()
+    
     function checkAnswer(event) {
         event.preventDefault();
         var wrongAnswer = 10;
@@ -224,7 +220,7 @@ function startQuiz(event) {
         };
     };
 
-    // This displays the word "Correct!"
+    
     function displayCorrect() {
         var correct = createElement("h3", "id", "correct", "Correct!");
         appendChild(document.body, correct);
@@ -240,7 +236,7 @@ function startQuiz(event) {
         }, 1000);
     };
 
-    // This displays the word "Wrong!"
+    
     function displayWrong() {
         var wrong = createElement("h3", "id", "wrong", "Wrong!")
         appendChild(document.body, wrong);
@@ -256,7 +252,7 @@ function startQuiz(event) {
         }, 1000);
     };
 
-    // This function generates a game over screen, displaying the score and input for initials to submit to highscores.html
+    
     function gameOver() {
         countDownSpan.textContent = 0;
         contentId.style.textAlign = "center";
@@ -266,7 +262,7 @@ function startQuiz(event) {
         addInitials()
     }
 
-    // Hides the answer buttons during Game Over screen
+    
     function hideButtons() {
         var q = questionList[currentQuestionIndex];
         for (var i = 0; i < q.choices.length; i++) {
@@ -274,14 +270,13 @@ function startQuiz(event) {
         };
     };
 
-    // This function displays the score
+    
     function showScore() {
         var scoreDiv = createElement("h2", "class", "score", "Score: " + score);
         appendChild(contentId, scoreDiv);
     };
 
-    // This function handles the input for initials and puts it into local storage.
-    // It also appends data from previous scores, then sorts in score order from big to small
+    
     function addInitials() {
         var input = createElement("input", "type", "text");
         input.setAttribute("id", "input");
@@ -321,7 +316,7 @@ function startQuiz(event) {
     };
 };
 
-// Creating View Highscore
+
 var highScoreDiv = createElement("div", "id", "high-scores");
 highScoreDiv.setAttribute("class", "top-position");
 appendChild(headerEl, highScoreDiv);
@@ -330,7 +325,7 @@ highScoreA.setAttribute("href", "highscores.html");
 highScoreA.textContent = "View High Scores";
 appendChild(document.getElementById("high-scores"), highScoreA);
 
-//Creating Timer, first a button then the span that contains the countDown variable
+
 var countDown = 0;
 var timerDiv = createElement("div", "id", "timer", "Timer: ");
 timerDiv.setAttribute("class", "top-position");
@@ -338,26 +333,26 @@ appendChild(headerEl, timerDiv);
 var countDownSpan = createElement("span", "id", "countdown", countDown);
 headerEl.childNodes[1].appendChild(countDownSpan);
 
-//Creating h1 for displaying game name/questions
+
 var questionH1 = createElement("h1", "id", "h1", "How well do YOU know coding?");
 appendChild(contentId, questionH1);
 
-//Creating Description of Quiz
+
 var descriptionDiv = createElement("p", "id", "description", "Put your knowledge to the test by answering the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!");
 appendChild(contentId, descriptionDiv);
 
-//Creating Button to Start Quiz, needing to add one more Attribute to this one
+
 var startButton = createElement("button", "id", "start-quiz", "Start Quiz");
 startButton.setAttribute("type", "button");
 appendChild(contentId, startButton);
 
-// Creating answer buttons
+
 var button0 = createButton("btn0");
 var button1 = createButton("btn1");
 var button2 = createButton("btn2");
 var button3 = createButton("btn3");
 
-// Click event for starting quiz
+
 document.getElementById("start-quiz").addEventListener("click", startQuiz);
 
 

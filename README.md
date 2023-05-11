@@ -1,3 +1,3 @@
 # Javascript-Quiz
 
-Credit to Andrew B. on Stack Overflow.
+Not my code - Credit to Andrew Bautista on Stack Overflow.
